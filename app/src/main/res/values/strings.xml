@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Mavel</string>
+    <string name="hash">a6b3d1559da452c0a89f563ac05c0971</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="copyright_marvel">copyright_marvel</string>
+    <string name="network_error_msj">Error de red. Intenta de nuevo!</string>
+    <string name="error_servidor">Error en la servidor. Intenta despues</string>
+    <string name="Ok">Ok</string>
+    <string name="No_informacion_msj">No hay informacion disponible</string>
+</resources>

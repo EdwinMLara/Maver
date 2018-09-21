@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mavel</string>
+
+    <string name="copyright_marvel">copyright_marvel</string>
+    <string name="network_error_msj">Network Error. Try Again</string>
+    <string name="error_servidor">Server Error. Try Again</string>
+    <string name="Ok">Ok</string>
+    <string name="No_informacion_msj">Not Information Available</string>
+</resources>
