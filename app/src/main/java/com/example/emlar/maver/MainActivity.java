@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     private static final String FRAGMENT_HERO_LIST = "fragment_hero_list";
     public static final int SUCCESS_CODE = 200;
+    private static final String FRAGMENT_HERO_GRID = "fragment_hero_grid" ;
 
     private FrameLayout frameLayout;
     private ArrayList<SuperHero> superHeroes;
@@ -59,14 +60,31 @@ public class MainActivity extends AppCompatActivity {
 
                     FragmentManager fragmentManager = getSupportFragmentManager();
 
-                    HeroListFragment savedFragment = (HeroListFragment) fragmentManager.findFragmentByTag(FRAGMENT_HERO_LIST);
+                    boolean isTablet = getResources().getBoolean(R.bool.is_tablet);
+                    if (isTablet){
+                        Toast.makeText(MainActivity.this,"Es tablet",Toast.LENGTH_LONG).show();
 
-                    if (savedFragment == null){
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        HeroListFragment heroListFragment = new HeroListFragment();
-                        heroListFragment.setArguments(bundle);
-                        fragmentTransaction.add(R.id.placeHolder, heroListFragment, FRAGMENT_HERO_LIST);
-                        fragmentTransaction.commit();
+                        HeroGridFragment savedFragment = (HeroGridFragment) fragmentManager.findFragmentByTag(FRAGMENT_HERO_GRID);
+
+                        if (savedFragment == null){
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            HeroGridFragment heroGridFragment = new HeroGridFragment();
+                            heroGridFragment.setArguments(bundle);
+                            fragmentTransaction.add(R.id.placeHolder, heroGridFragment, FRAGMENT_HERO_GRID);
+                            fragmentTransaction.commit();
+                        }
+                    }else{
+                        Toast.makeText(MainActivity.this,"Es un telefono",Toast.LENGTH_LONG).show();
+
+                        HeroListFragment savedFragment = (HeroListFragment) fragmentManager.findFragmentByTag(FRAGMENT_HERO_LIST);
+
+                        if (savedFragment == null){
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            HeroListFragment heroListFragment = new HeroListFragment();
+                            heroListFragment.setArguments(bundle);
+                            fragmentTransaction.add(R.id.placeHolder, heroListFragment, FRAGMENT_HERO_LIST);
+                            fragmentTransaction.commit();
+                        }
                     }
 
                 }else{

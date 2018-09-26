@@ -2,7 +2,6 @@ package com.example.emlar.maver;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +14,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class HeroAdapter extends RecyclerView.Adapter<HeroAdapter.MyViewHolder> {
+public class HeroListAdapter extends RecyclerView.Adapter<HeroListAdapter.MyViewHolder> {
 
     ArrayList<SuperHero> superHeroArrayList;
     Context context;
     HeroListFragment.HeroClickListener heroClickListener;
 
-    public HeroAdapter(Context context, ArrayList superHeroArrayList, HeroListFragment.HeroClickListener heroClickListener){
+    public HeroListAdapter(Context context, ArrayList superHeroArrayList, HeroListFragment.HeroClickListener heroClickListener){
         this.context = context;
         this.superHeroArrayList = superHeroArrayList;
         this.heroClickListener = heroClickListener;

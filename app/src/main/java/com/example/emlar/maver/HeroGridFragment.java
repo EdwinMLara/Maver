@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +19,14 @@ import com.example.emlar.maver.Models.SuperHero;
 import java.util.ArrayList;
 
 
-public class HeroListFragment extends Fragment {
+public class HeroGridFragment extends Fragment {
     private static final String TAG = HeroListFragment.class.getSimpleName();
     private static final String HERO_DETAIL_FRAGMENT = "hero_detail_fragment";
     public static final String SUPER_HERO = "super_hero";
     RecyclerView recyclerView;
     ArrayList<SuperHero> superHeros;
 
-    public HeroListFragment() {
+    public HeroGridFragment() {
         // Required empty public constructor
     }
 
@@ -57,18 +59,24 @@ public class HeroListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_hero_list,container,false);
+        View view = inflater.inflate(R.layout.fragment_hero_grid,container,false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.superHeroesReciclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        HeroListAdapter heroListAdapter = new HeroListAdapter(getContext(), superHeros, new HeroClickListener() {
+        HeroGridAdapter heroGridAdapter = new HeroGridAdapter(getContext(), superHeros, new HeroGridFragment.HeroClickListener() {
             @Override
             public void onHeroClick(SuperHero superHero) {
                 gotoHeroDetailFragment(superHero);
             }
         });
-        recyclerView.setAdapter(heroListAdapter);
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        int numColumn = (int) (dpWidth/200);
+
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),numColumn));
+
+        recyclerView.setAdapter(heroGridAdapter);
 
         return view;
     }
